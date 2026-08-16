@@ -170,7 +170,7 @@ PSUSphere/
 ## Repository
 
 <p align="center">
-  <a href="https://github.com/">
+  <a href="https://github.com/Kenzo-gg/PSUSphere">
     <img src="https://img.shields.io/badge/View%20on%20GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
   </a>
 </p>
