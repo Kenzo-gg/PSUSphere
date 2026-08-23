@@ -1,0 +1,37 @@
+{% if is_paginated %}
+
+{% if page_obj.number > 1 %}
+[First](?page=1)
+{% else %}
+First
+{% endif %}
+
+{% if page_obj.has_previous %}
+[Prev](?page={{ page_obj.previous_page_number }})
+{% else %}
+Prev
+{% endif %}
+
+{% for page_num in paginator.page_range %}
+{% if page_obj.number == page_num %}
+{{ page_num }} (current)
+{% elif page_num > page_obj.number|add:'-3' and page_num < page_obj.number|add:'3' %}
+[{{ page_num }}](?page={{ page_num }})
+{% endif %}
+{% endfor %}
+
+{% if page_obj.has_next %}
+[Next](?page={{ page_obj.next_page_number }})
+{% else %}
+Next
+{% endif %}
+
+{% if page_obj.number != paginator.num_pages %}
+[Last](?page={{ paginator.num_pages }})
+{% else %}
+Last
+{% endif %}
+
+Showing **{{ object_list.count }}** out of **{{ paginator.count }}** entries
+
+{% endif %}
