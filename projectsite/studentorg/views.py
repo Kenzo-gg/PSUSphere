@@ -74,6 +74,26 @@ class ProgramList(ListView):
     template_name = 'program_list.html'
     paginate_by = 5
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(prog_name__icontains=query) |
+                Q(college__college_name__icontains=query)
+            )
+        return qs
+    
+    def get_ordering(self):
+        allowed = ["prog_name", "college__college_name"]
+        sort_by = self.request.GET.get("sort_by")
+
+        if sort_by in allowed:
+            return sort_by
+
+        return "prog_name"
+
 class ProgramCreateView(CreateView):
     model = Program
     form_class = ProgramForm
@@ -97,6 +117,19 @@ class StudentList(ListView):
     template_name = 'student_list.html'
     paginate_by = 5
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(student_id__icontains=query) |
+                Q(lastname__icontains=query) |
+                Q(firstname__icontains=query) |
+                Q(program__prog_name__icontains=query)
+            )
+        return qs
+
 class StudentCreateView(CreateView):
     model = Student
     form_class = StudentForm
@@ -119,6 +152,16 @@ class CollegeList(ListView):
     context_object_name = 'college'
     template_name = 'college_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(college_name__icontains=query)
+            )
+        return qs
     
 class CollegeCreateView(CreateView):
     model = College
@@ -142,6 +185,18 @@ class OrgMemberList(ListView):
     context_object_name = 'orgmem'
     template_name = 'orgmem_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(student__lastname__icontains=query) |
+                Q(student__firstname__icontains=query) |
+                Q(organization__name__icontains=query)
+            )
+        return qs
 
 class OrgMemberCreateView(CreateView):
     model = OrgMember
