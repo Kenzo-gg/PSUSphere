@@ -170,7 +170,7 @@
 						</div>
 					</div>
 				</div>
-				<ul class="nav">
+				<ul class="nav">	
 					<li class="nav-item">
 						<a href="index.html">
 							<i class="la la-dashboard"></i>
@@ -178,34 +178,39 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="{% url 'organization-list' %}">
+						<a href="{% url 'orgmem-list' %}">
 							<i class="la la-table"></i>
-							<p>Organization</p>
+							<p>Organization Members</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="forms.html">
-							<i class="la la-keyboard-o"></i>
-							<p>Org. Members</p>
+						<a href="{% url 'college-list' %}">
+							<i class="la la-bell"></i>
+							<p>College</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="tables.html">
+						<a href="{% url 'program-list' %}">
+							<i class="la la-font"></i>
+							<p>Programs</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{% url 'student-list' %}">
 							<i class="la la-th"></i>
 							<p>Student</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="notifications.html">
+						<a href="{% url 'college-list' %}">
 							<i class="la la-bell"></i>
 							<p>College</p>
 						</a>
 					</li>
-					<li class="nav-item active">
-						<a href="typography.html">
+					<li class="nav-item">
+						<a href="{% url 'program-list' %}">
 							<i class="la la-font"></i>
-							<p>Typography</p>
-							<span class="badge badge-danger">25</span>
+							<p>Programs</p>
 						</a>
 					</li>
 				</ul>
